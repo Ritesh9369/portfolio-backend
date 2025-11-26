@@ -4,15 +4,13 @@ import dotenv from "dotenv";
 import mailRoutes from "./routes/mailRoutes.js";
 
 dotenv.config();
-
 const app = express();
 
-// ✅ Correct CORS (Netlify + Mobile + Railway)
+// 🔥 Correct CORS (Netlify + Railway)
 app.use(
   cors({
     origin: [
       "http://localhost:5173",
-      "https://riteshchauhan-portfolio.netlify.app",
       "https://ritesh-portfolio-frontend.netlify.app"
     ],
     methods: ["GET", "POST"]
@@ -21,14 +19,14 @@ app.use(
 
 app.use(express.json());
 
-// ✅ Test route (to check server is running)
+// 🔍 Test route
 app.get("/", (req, res) => {
   res.send("Portfolio Email Backend Running ✔");
 });
 
-// ✅ All API routes
+// 📩 Mail API route
 app.use("/api", mailRoutes);
 
-// Server start
-const PORT = process.env.PORT || 8080;
+// 🚀 Railway MUST use env PORT (no fallback!)
+const PORT = process.env.PORT;
 app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
