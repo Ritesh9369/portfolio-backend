@@ -7,12 +7,13 @@ dotenv.config();
 
 const app = express();
 
-// ✅ Correct CORS (IMPORTANT for Netlify + Mobile + Render)
+// ✅ Correct CORS (Netlify + Mobile + Railway)
 app.use(
   cors({
     origin: [
       "http://localhost:5173",
-      "https://riteshchauhan-portfolio.netlify.app" // your live site
+      "https://riteshchauhan-portfolio.netlify.app",
+      "https://ritesh-portfolio-frontend.netlify.app"
     ],
     methods: ["GET", "POST"]
   })
@@ -29,5 +30,5 @@ app.get("/", (req, res) => {
 app.use("/api", mailRoutes);
 
 // Server start
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
